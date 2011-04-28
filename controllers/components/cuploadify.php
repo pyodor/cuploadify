@@ -46,8 +46,8 @@ class CuploadifyComponent extends Object {
         if (!empty($_FILES)) { 
             $file_data = isset($_REQUEST["fileDataName"]) ? $_REQUEST["fileDataName"] : "Filedata";
             $temp_file = $_FILES[$file_data]['tmp_name'];
-            
-            $target_path = $this->get_target_folder($options);
+
+            $target_path = isset($options['upload_dir']) ? $options['upload_dir'] : $this->get_target_folder($options);
 
             if (!file_exists($target_path)) {
                 CakeLog::write("debug", "Creating directory: $target_path");
